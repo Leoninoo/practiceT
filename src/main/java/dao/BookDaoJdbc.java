@@ -15,13 +15,13 @@ public class BookDaoJdbc implements BookDao {
     private final String SQL_SELECT_ALL =
             "SELECT * FROM book";
 
-    private final String SQL_INSERT_PRODUCT =
+    private final String SQL_INSERT_BOOK =
             "INSERT INTO book(name, price, description, author) VALUES (?, ?, ?, ?)";
 
-    private final String SQL_UPDATE_PRODUCT =
+    private final String SQL_UPDATE_BOOK =
             "UPDATE book SET price = ?, description = ?, author = ? WHERE (ID = ?)";
 
-    private final String SQL_DELETE_PRODUCT =
+    private final String SQL_DELETE_BOOK =
             "DELETE FROM book WHERE id = ?";
 
     public BookDaoJdbc(Connection connection) {
@@ -56,7 +56,7 @@ public class BookDaoJdbc implements BookDao {
     @Override
     public void save(Book product) {
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_INSERT_PRODUCT);
+            PreparedStatement statement = connection.prepareStatement(SQL_INSERT_BOOK);
             statement.setString(1, product.getBookName());
             statement.setInt(2, product.getPrice());
             statement.setString(3, product.getDescription());
@@ -70,7 +70,7 @@ public class BookDaoJdbc implements BookDao {
     @Override
     public void update(Book product) {
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_PRODUCT);
+            PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_BOOK);
             statement.setInt(1, product.getPrice());
             statement.setString(2, product.getDescription());
             statement.setString(3, product.getAuthor());
@@ -84,7 +84,7 @@ public class BookDaoJdbc implements BookDao {
     @Override
     public void delete(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement(SQL_DELETE_PRODUCT);
+            PreparedStatement statement = connection.prepareStatement(SQL_DELETE_BOOK);
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e) {
