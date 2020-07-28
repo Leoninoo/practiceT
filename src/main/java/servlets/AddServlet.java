@@ -18,6 +18,7 @@ import java.sql.SQLException;
 public class AddServlet extends HttpServlet {
     BookDao bookDao;
 
+    //Подключение к базе данных
     @Override
     public void init() {
         String url = "jdbc:mysql://localhost:3306/practice?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -34,11 +35,13 @@ public class AddServlet extends HttpServlet {
         }
     }
 
+    //Перенаправляет запрос на jsp страницу
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/jsp/add.jsp").forward(req, resp);
     }
 
+    //Получает данные с формы на jsp странице и добавляет новую книгу в бд
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");

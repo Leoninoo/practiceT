@@ -15,9 +15,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 @WebServlet("/change")
-public class ChangeServlet extends HttpServlet {
+public class UpdateServlet extends HttpServlet {
     BookDao bookDao;
 
+    //Подключение к базе данных
     @Override
     public void init() {
         String url = "jdbc:mysql://localhost:3306/practice?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -34,6 +35,7 @@ public class ChangeServlet extends HttpServlet {
         }
     }
 
+    //Получает id выбранной книги из url, находит книгу и отправляет ее на jsp страницу
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
@@ -43,6 +45,7 @@ public class ChangeServlet extends HttpServlet {
         req.getServletContext().getRequestDispatcher("/jsp/change.jsp").forward(req, resp);
     }
 
+    //Получает новые данные с формы на jsp странице и id книги из url и обновляет данные книги в бд
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
@@ -57,7 +60,7 @@ public class ChangeServlet extends HttpServlet {
 
         Book book = new Book(name, price, description, author);
         book.setId(Integer.parseInt(id));
-        bookDao.save(book);
+        bookDao.update(book);
 
         resp.sendRedirect(req.getContextPath() + "/main");
     }
