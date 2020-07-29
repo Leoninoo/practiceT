@@ -54,7 +54,9 @@ public class UpdateServlet extends HttpServlet {
         String description = req.getParameter("description");
         String author = req.getParameter("author");
 
+        //Если одно из полей пустое - обновляем страницу
         if(name == null || price == 0 || description == null || author == null) {
+            resp.sendRedirect(req.getContextPath() + "/change");
             return;
         }
 
@@ -62,6 +64,6 @@ public class UpdateServlet extends HttpServlet {
         book.setId(Integer.parseInt(id));
         bookDao.update(book);
 
-        resp.sendRedirect(req.getContextPath() + "/main");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

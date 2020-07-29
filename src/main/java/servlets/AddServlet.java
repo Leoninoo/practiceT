@@ -49,13 +49,15 @@ public class AddServlet extends HttpServlet {
         String description = req.getParameter("description");
         String author = req.getParameter("author");
 
+        //Если одно из полей пустое - обновляем страницу
         if(name == null || price == 0 || description == null || author == null) {
+            resp.sendRedirect(req.getContextPath() + "/add");
             return;
         }
 
         Book book = new Book(name, price, description, author);
         bookDao.save(book);
 
-        resp.sendRedirect(req.getContextPath() + "/main");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }
