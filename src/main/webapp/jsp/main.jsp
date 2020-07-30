@@ -15,6 +15,8 @@
             <th>Цена</th>
             <th>Описание</th>
             <th>Автор</th>
+            <th>Продано книг</th>
+            <th>Прибыль</th>
         </tr>
         <c:forEach items="${books}" var="book">
             <tr>
@@ -22,6 +24,8 @@
                 <td>${book.price}</td>
                 <td>${book.description}</td>
                 <td>${book.author}</td>
+                <td>${book.sold}</td>
+                <td>${book.profit}</td>
                 <td><a href="${pageContext.request.contextPath}/change?id=${book.id}"><button>Изменить</button></a></td>
                 <td><form method="post" action="${pageContext.request.contextPath}/?id=${book.id}"><button>Удалить</button></form></td>
             </tr>

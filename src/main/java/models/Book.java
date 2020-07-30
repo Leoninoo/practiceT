@@ -6,12 +6,16 @@ public class Book {
     private int price;
     private String description;
     private String author;
+    private int sold;
+    private int profit;
 
-    public Book(String bookName, int price, String description, String author) {
+    public Book(String bookName, int price, String description, String author, int sold) {
         this.bookName = bookName;
         this.price = price;
         this.description = description;
         this.author = author;
+        this.sold = sold;
+        this.profit = price * sold;
     }
 
     public int getId() {
@@ -52,5 +56,21 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getSold() {
+        return sold;
+    }
+
+    public void setSold(int sold) {
+        this.sold = sold;
+    }
+
+    public int getProfit() {
+        return profit;
+    }
+
+    public void setProfit(int profit) {
+        this.profit = profit;
     }
 }

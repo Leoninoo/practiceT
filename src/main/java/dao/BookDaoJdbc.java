@@ -16,10 +16,10 @@ public class BookDaoJdbc implements BookDao {
             "SELECT * FROM book";
 
     private final String SQL_INSERT_BOOK =
-            "INSERT INTO book(name, price, description, author) VALUES (?, ?, ?, ?)";
+            "INSERT INTO book(name, price, description, author, sold) VALUES (?, ?, ?, ?, ?)";
 
     private final String SQL_UPDATE_BOOK =
-            "UPDATE book SET price = ?, description = ?, author = ? WHERE (ID = ?)";
+            "UPDATE book SET price = ?, description = ?, author = ?, sold = ? WHERE (ID = ?)";
 
     private final String SQL_DELETE_BOOK =
             "DELETE FROM book WHERE id = ?";
@@ -40,8 +40,9 @@ public class BookDaoJdbc implements BookDao {
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
                 String author = resultSet.getString("author");
+                int sold = resultSet.getInt("sold");
 
-                Book product = new Book(name, price, description, author);
+                Book product = new Book(name, price, description, author, sold);
                 product.setId(id);
 
                 return product;
@@ -61,6 +62,7 @@ public class BookDaoJdbc implements BookDao {
             statement.setInt(2, product.getPrice());
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getAuthor());
+            statement.setInt(5, product.getSold());
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,7 +76,8 @@ public class BookDaoJdbc implements BookDao {
             statement.setInt(1, product.getPrice());
             statement.setString(2, product.getDescription());
             statement.setString(3, product.getAuthor());
-            statement.setInt(4, product.getId());
+            statement.setInt(4, product.getSold());
+            statement.setInt(5, product.getId());
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -106,8 +109,9 @@ public class BookDaoJdbc implements BookDao {
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
                 String author = resultSet.getString("author");
+                int sold = resultSet.getInt("sold");
 
-                Book product = new Book(name, price, description, author);
+                Book product = new Book(name, price, description, author, sold);
                 product.setId(id);
 
                 products.add(product);

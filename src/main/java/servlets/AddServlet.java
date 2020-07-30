@@ -23,7 +23,7 @@ public class AddServlet extends HttpServlet {
     public void init() {
         String url = "jdbc:mysql://localhost:3306/practice?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String userName = "root";
-        String password = "root";
+        String password = "524710kleo";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -48,6 +48,7 @@ public class AddServlet extends HttpServlet {
         int price = Integer.parseInt(req.getParameter("price"));
         String description = req.getParameter("description");
         String author = req.getParameter("author");
+        int sold = Integer.parseInt(req.getParameter("sold"));
 
         //Если одно из полей пустое - обновляем страницу
         if(name == null || price == 0 || description == null || author == null) {
@@ -55,7 +56,8 @@ public class AddServlet extends HttpServlet {
             return;
         }
 
-        Book book = new Book(name, price, description, author);
+        //Ховраняем новую кнгигу в бд
+        Book book = new Book(name, price, description, author, sold);
         bookDao.save(book);
 
         resp.sendRedirect(req.getContextPath() + "/");

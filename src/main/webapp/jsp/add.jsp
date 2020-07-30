@@ -21,6 +21,9 @@
         <label for="author">Автор
             <input class="input-field" type="text" id="author" name="author">
         </label>
+        <label for="sold">Продано книг
+            <input class="input-field" type="number" id="sold" name="sold" value="0">
+        </label>
         <input type="submit" value="Добавить">
     </form>
 </div>
