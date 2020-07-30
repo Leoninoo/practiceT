@@ -23,7 +23,7 @@ public class AddServlet extends HttpServlet {
     public void init() {
         String url = "jdbc:mysql://localhost:3306/practice?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String userName = "root";
-        String password = "524710kleo";
+        String password = "root";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
